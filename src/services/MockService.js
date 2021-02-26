@@ -2,14 +2,8 @@ class MockServices {
     getAll(){
         return ListItems;
     }
-    getById(id) {
-    let  a = ListItems.forEach((item, index) => {
-         if(index === id){
-             console.log(item);
-          return item;
-         }
-     });
-     return a;
+    getById(id){
+        return ListItems[id];
     }
 }
 export default new MockServices();

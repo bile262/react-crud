@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-import AddItem from "./components/AddItem";
-import HomePage from "./components/HomePage";
+import AddItem from "./components/AddItem/AddItem";
+import EditItem from "./components/EditItem";
+import HomePage from "./components/HomePage/HomePage";
+
 import Item from "./components/Item";
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Switch>
           <Route exact path={["/", "/home"]} component={HomePage} />
           <Route exact path="/add" component={AddItem} />
+          <Route path="/home/edit/:id" component={EditItem} />
           <Route path="/home/:id" component={Item} />
         </Switch>
       </div>
