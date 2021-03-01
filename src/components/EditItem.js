@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MockService from "../services/MockService";
 import studentService from "../services/student.service";
 
 class EditItem extends Component {
@@ -8,15 +7,15 @@ class EditItem extends Component {
     this.loadStudent = this.loadStudent.bind(this);
     this.updateStudent = this.updateStudent.bind(this);
     this.state = {
-        name: '',
-        job: ''  
-    }
+      name: "",
+      job: "",
+    };
   }
   initialState = {
     name: "",
     job: "",
   };
-  componentDidMount(){
+  componentDidMount() {
     this.loadStudent();
   }
   loadStudent() {
@@ -25,19 +24,21 @@ class EditItem extends Component {
       .then((rs) => {
         this.setState({
           name: rs.data.name,
-          job: rs.data.job
+          job: rs.data.job,
         });
-        console.log(rs.data);
       })
       .catch((e) => {
         console.log(e);
       });
   }
-  updateStudent() {}
+  updateStudent(id,data) {
+    studentService.updateStudent(id,data).then(() => {
+      this.props.history.push('/home');
+    });
+  }
   state = this.initialState;
   handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
     this.setState({
       [name]: value,
     });
@@ -50,11 +51,10 @@ class EditItem extends Component {
   };
   submitForm = () => {
     var data = this.state;
-    console.log(data);
-  }
+    this.updateStudent(this.props.match.params.id,data);
+  };
   render() {
     const { name, job } = this.state;
-    // console.log(this.state);
     return (
       <div>
         <h1>Edit Item</h1>
@@ -83,7 +83,11 @@ class EditItem extends Component {
               onChange={this.handleChange}
             ></input>
           </div>
-          <button type="button" className="btn btn-info" onClick={this.submitForm}>
+          <button
+            type="button"
+            className="btn btn-info"
+            onClick={this.submitForm}
+          >
             Edit
           </button>
         </form>

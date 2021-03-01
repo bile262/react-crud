@@ -17,13 +17,12 @@ const TableHeader = () => {
 };
 
 const TableBody = (characterData) => {
-  const history = useHistory();
+  // const history = useHistory();
   const handleRowClick = (row, path) => {
-    history.push(`/${path}/${row}`, row);
+    this.props.history.push(`/${path}/${row}`, row);
   };
   // console.log(characterData);
-  const rows = characterData.characterData.map((row, index) => {
-    console.log(row.id);
+  const rows = characterData.characterData.map((row) => {
     return (
       <tr key={row.id + "Table"}>
         <td>{row.name}</td>

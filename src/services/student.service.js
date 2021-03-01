@@ -13,8 +13,8 @@ class StudentService {
     deleteStudent(id){
         return http.delete(`/student/${id}`);
     }
-    updateStudent(data){
-        return http.put(`/student/${data.id}`,data)
+    updateStudent(id,data){
+        return http.put(`/student/${id}`,data)
     }
 };
 export default new StudentService();

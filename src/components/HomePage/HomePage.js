@@ -22,7 +22,6 @@ class HomePage extends Component {
         this.setState({
           data: response.data.data,
         });
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
